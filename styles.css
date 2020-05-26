@@ -1,35 +1,53 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Asap:wght@400;500&display=swap');
+
+* {
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
 	box-sizing: border-box;
 }
-canvas {
-	margin: auto;
+
+body {
+	background-color: rgb(173, 216, 230);
+	background-image: linear-gradient(to right, #95d5b2, #40916c);
+}
+
+h1 {
+	background-color: #d8f3dc;
+	text-align: center;
+	padding: 15px;
+	font-size: 60px;
+	font-family: Asap, sans-serif;
+	color: #1b4332;
 }
 
 .board {
-	position: absolute;
-	width: 400px;
-	height: 400px;
-	left: 100px;
-	top: 150px;
-	display: grid;
-	/* background-color: black; */
+	display: inline-grid;
+	width: 396px;
 	grid-template-columns: repeat(3, auto);
+	grid-template-rows: repeat(3, auto);
 	grid-gap: 3px;
+	position: absolute;
+	left: calc(50vw - calc(396px / 2));
+	top: 170px;
 }
 
 .cell {
 	width: 130px;
 	height: 130px;
 	background-color: rgba(255, 255, 255, 0.5);
-	color: black;
 	font-size: 130px;
 	font-family: sans-serif;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.X {
+	color: black;
+}
+
+.O {
+	color: white;
 }
 
 .cell.empty:hover {
@@ -39,4 +57,32 @@ canvas {
 
 .won {
 	color: coral;
+}
+
+.bar {
+	display: flex;
+	font-size: 30px;
+	height: 30px;
+	margin-top: 25px;
+	font-family: sans-serif;
+	color: #1b4332;
+}
+
+.status {
+	display: flex;
+	position: absolute;
+	left: calc(50vw - 200px);
+	padding: 0 10px;
+}
+
+.restart {
+	font-size: 30px;
+	position: absolute;
+	right: calc(50vw - 200px);
+	padding: 0 20px;
+}
+
+.restart:hover {
+	cursor: pointer;
+	color: rgb(83, 83, 83);
 }

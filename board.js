@@ -1,6 +1,5 @@
 class Board {
 	constructor() {
-		//this.board = [ [ "O", "O", "X" ], [ "X", "O", "X" ], [ "O", "O", "X" ] ];
 		this.board = [ [ "", "", "" ], [ "", "", "" ], [ "", "", "" ] ];
 		this.winPossibilities = [
 			[ [ 0, 0 ], [ 0, 1 ], [ 0, 2 ] ],
@@ -14,30 +13,13 @@ class Board {
 		];
 	}
 
-	show() {
-		strokeWeight(4);
-		// line(100 + 400 / 3, 150, 100 + 400 / 3, 550);
-		// line(100 + 800 / 3, 150, 100 + 800 / 3, 550);
-		// line(100, 150 + 400 / 3, 500, 150 + 400 / 3);
-		// line(100, 150 + 800 / 3, 500, 150 + 800 / 3);
-
-		// textAlign(CENTER, CENTER);
-		// textSize(100);
-
-		// for (let i = 0; i < this.board.length; i++) {
-		// 	for (let j = 0; j < this.board[0].length; j++) {
-		// 		text(this.board[j][i], i * 133 + 168, j * 133 + 220);
-		// 	}
-		// }
-	}
-
 	addMove(move, row, col) {
 		this.board[row][col] = move;
-
 		this.selectDivAt(row, col).innerHTML = move;
 	}
 
 	checkWin() {
+		// check for all the win possibilities
 		for (let possibility of this.winPossibilities) {
 			if (
 				this.board[possibility[0][0]][possibility[0][1]] != "" &&
@@ -59,13 +41,23 @@ class Board {
 				const div3 = this.selectDivAt(row3, col3);
 				div3.classList.add("won");
 
+				this.gameEnd();
+
 				return this.board[possibility[0][0]][possibility[0][1]];
 			}
 		}
+
+		// check for a tie
+		if (!(this.board[0].includes("") || this.board[1].includes("") || this.board[2].includes(""))) {
+			return "tie";
+		}
+
+		// otherwise not tie or win yet
 		return null;
 	}
 
 	selectDivAt(x, y) {
+		// returns the cell div element at an x, y location
 		const selector = `[data-row='${x}']`;
 		const row = document.querySelectorAll(selector);
 		for (let r of row) {
@@ -73,5 +65,16 @@ class Board {
 				return r;
 			}
 		}
+	}
+
+	gameEnd() {
+		active = false;
+		for (let cell of cell_divs) {
+			cell.classList.remove("empty");
+		}
+	}
+
+	reset() {
+		this.board = [ [ "", "", "" ], [ "", "", "" ], [ "", "", "" ] ];
 	}
 }
