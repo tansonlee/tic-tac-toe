@@ -14,15 +14,18 @@ restart_div.addEventListener("click", restartGame);
 
 function handleClick(cell) {
 	if (active && cell.innerHTML == "") {
-		console.log(cell.innerHTML);
 		if (xTurn) {
 			board.addMove("X", cell.dataset.row, cell.dataset.col);
 			cell.classList.remove("empty");
 			cell.classList.add("X");
+			status_div.classList.remove("X-turn");
+			status_div.classList.add("O-turn");
 		} else {
 			board.addMove("O", cell.dataset.row, cell.dataset.col);
 			cell.classList.remove("empty");
 			cell.classList.add("O");
+			status_div.classList.remove("O-turn");
+			status_div.classList.add("X-turn");
 		}
 		xTurn = !xTurn;
 
@@ -35,6 +38,7 @@ function handleClick(cell) {
 		let winner = board.checkWin();
 		if (winner) {
 			status_div.innerHTML = `${winner} WINS!`;
+			status_div.classList.add("result-win");
 		}
 	}
 }
@@ -52,4 +56,7 @@ function restartGame() {
 	board.reset();
 	xTurn = true;
 	status_div.innerHTML = "X's turn";
+	status_div.classList.remove(...status_div.classList);
+	status_div.classList.add("status");
+	status_div.classList.add("X-turn");
 }

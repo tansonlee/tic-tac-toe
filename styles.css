@@ -8,7 +8,7 @@
 
 body {
 	background-color: rgb(173, 216, 230);
-	background-image: linear-gradient(to right, #95d5b2, #40916c);
+	background-image: linear-gradient(to left, #95d5b2, #40916c);
 }
 
 h1 {
@@ -85,4 +85,17 @@ h1 {
 .restart:hover {
 	cursor: pointer;
 	color: rgb(83, 83, 83);
+}
+
+.X-turn {
+	color: black;
+}
+
+.O-turn {
+	color: white;
+}
+
+.result-win {
+	color: rgb(255, 127, 80);
+	text-shadow: black 0 0 15px;
 }
