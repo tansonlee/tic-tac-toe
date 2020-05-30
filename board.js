@@ -11,6 +11,8 @@ class Board {
 			[ [ 0, 0 ], [ 1, 1 ], [ 2, 2 ] ],
 			[ [ 0, 2 ], [ 1, 1 ], [ 2, 0 ] ]
 		];
+		this.gameOn = true;
+		this.xTurn = true;
 	}
 
 	addMove(move, row, col) {
@@ -21,11 +23,13 @@ class Board {
 	checkWin() {
 		// check for all the win possibilities
 		for (let possibility of this.winPossibilities) {
+			// if the board space isnt blank and equals two others that are in line
 			if (
 				this.board[possibility[0][0]][possibility[0][1]] != "" &&
 				this.board[possibility[0][0]][possibility[0][1]] == this.board[possibility[1][0]][possibility[1][1]] &&
 				this.board[possibility[0][0]][possibility[0][1]] == this.board[possibility[2][0]][possibility[2][1]]
 			) {
+				// add the won class to the three cells
 				const row1 = possibility[0][0].toString();
 				const col1 = possibility[0][1].toString();
 				const div1 = this.selectDivAt(row1, col1);
@@ -40,8 +44,6 @@ class Board {
 				const col3 = possibility[2][1].toString();
 				const div3 = this.selectDivAt(row3, col3);
 				div3.classList.add("won");
-
-				this.gameEnd();
 
 				return this.board[possibility[0][0]][possibility[0][1]];
 			}
@@ -68,13 +70,15 @@ class Board {
 	}
 
 	gameEnd() {
-		active = false;
+		this.gameOn = false;
 		for (let cell of cell_divs) {
 			cell.classList.remove("empty");
 		}
 	}
 
-	reset() {
+	resetBoard() {
 		this.board = [ [ "", "", "" ], [ "", "", "" ], [ "", "", "" ] ];
+		this.xTurn = true;
+		this.gameOn = true;
 	}
 }
