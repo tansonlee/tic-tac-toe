@@ -1,1 +1,1 @@
-# tic-tac-toe-p5
+# tic-tac-toe
