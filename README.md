@@ -1,4 +1,4 @@
-# tic-tac-toe
+# Tic Tac Toe
 
 Link to the game: [Tic Tac Toe](https://tansonlee.github.io/tic-tac-toe/)
 
